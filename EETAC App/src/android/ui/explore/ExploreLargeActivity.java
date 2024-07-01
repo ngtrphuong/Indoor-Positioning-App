@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -326,7 +327,7 @@ public class ExploreLargeActivity extends ListActivity implements OnClickListene
 		// Create an image file name
 		String timeStamp = new SimpleDateFormat("HHmmss").format(new Date());
 		String imageFileName = "IMG_" + timeStamp + "_";
-		return File.createTempFile(imageFileName,".jpg", Processor.cache_path);
+		return Files.createTempFile(Processor.cache_path.toPath(), imageFileName, ".jpg").toFile();
 	}
 	private File setUpPhotoFile() throws IOException {	
 		File f = createImageFile();
